@@ -10,7 +10,7 @@
 	});
 </script>
 
-<slot />
-<div class="mx-96">
-    <ThemeSwitch/>
+<div class="mx-96 flex gap-2">
+	<slot />
+	<ThemeSwitch />
 </div>
