@@ -9,7 +9,15 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
-		"format": "prettier --write ."
+		"format": "prettier --write .",
+		"db:push": "drizzle-kit push",
+		"db:migrate": "drizzle-kit migrate",
+		"db:studio": "drizzle-kit studio",
+		"db:seed": "npx tsx ./src/lib/server/db/seed.ts",
+		"db:generate": "drizzle-kit generate",
+		"db:drop": "drizzle-kit drop",
+		"db:up": "drizzle-kit up",
+		"db:check": "drizzle-kit check"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.0.0",
@@ -17,6 +25,7 @@
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"@tailwindcss/typography": "^0.5.14",
 		"@types/eslint": "^9.6.0",
+		"@types/node": "^22.5.0",
 		"autoprefixer": "^10.4.20",
 		"daisyui": "^4.12.10",
 		"drizzle-kit": "^0.24.0",
