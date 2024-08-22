@@ -1,7 +1,7 @@
 import { relations, sql } from 'drizzle-orm';
 import { text, integer, sqliteTable } from 'drizzle-orm/sqlite-core';
 import { clienteTable } from '../cliente';
-import { representanteTable } from '../representantes';
+import { representanteTable } from '../representante';
 import { servicoTable } from '../servico';
 
 export const contratoTable = sqliteTable('contrato', {

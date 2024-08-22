@@ -1,5 +1,5 @@
 export * from './schema/cliente/controller'
 export * from './schema/contrato/controller'
 export * from './schema/gerente/controller'
-export * from './schema/representantes/controller'
+export * from './schema/representante/controller'
 export * from './schema/servico/controller'
