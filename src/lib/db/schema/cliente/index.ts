@@ -6,7 +6,7 @@ import { contratoTable } from '../contrato';
 export const clienteTable = sqliteTable('cliente', {
 	id: integer('id').notNull().primaryKey({ autoIncrement: true }),
 	name: text('name').notNull(),
-	cnpj: text('cpnj').notNull(),
+	cnpj: text('cnpj').notNull(),
 	representante_id: integer('representante_id').references(() => representanteTable.id)
 });
 
@@ -17,7 +17,7 @@ export const clienteRelations = relations(clienteTable, ({ one }) => ({
 	}),
 	contrato: one(contratoTable, {
 		fields: [clienteTable.id],
-		references: [contratoTable.id]
+		references: [contratoTable.cliente_id]
 	})
 }));
 
