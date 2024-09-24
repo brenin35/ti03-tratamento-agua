@@ -1,18 +1,19 @@
-import { relations, sql } from 'drizzle-orm';
+import { relations } from 'drizzle-orm';
 import { text, integer, sqliteTable } from 'drizzle-orm/sqlite-core';
 import { representanteTable } from '../representante';
 import { contratoTable } from '../contrato';
 
 export const clienteTable = sqliteTable('cliente', {
 	id: integer('id').notNull().primaryKey({ autoIncrement: true }),
+	cnpj: integer('cnpj').notNull(),
 	name: text('name').notNull(),
-	cnpj: text('cnpj').notNull(),
-	representante_id: integer('representante_id').references(() => representanteTable.id)
+	representante_id: integer('representante_id').references(() => representanteTable.id),
+	endereco: text('endereco')
 });
 
 export const clienteRelations = relations(clienteTable, ({ one }) => ({
 	representante: one(representanteTable, {
-		fields: [clienteTable.id],
+		fields: [clienteTable.representante_id],
 		references: [representanteTable.id]
 	}),
 	contrato: one(contratoTable, {
@@ -21,5 +22,5 @@ export const clienteRelations = relations(clienteTable, ({ one }) => ({
 	})
 }));
 
-export type SelectClietne = typeof clienteTable.$inferSelect;
+export type SelectCliente = typeof clienteTable.$inferSelect;
 export type InsertCliente = typeof clienteTable.$inferInsert;

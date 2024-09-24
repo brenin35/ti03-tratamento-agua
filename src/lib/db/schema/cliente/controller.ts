@@ -1,15 +1,31 @@
 import { db } from '$lib/db';
-import { clienteTable, type InsertCliente } from '$lib/db/schema';
+import { clienteTable } from '$lib/db/schema/cliente';
+import type { InsertCliente, SelectCliente } from '$lib/db/schema/cliente';
+import { eq } from 'drizzle-orm';
 
-function insertCliente(data: InsertCliente) {
+async function insertCliente(data: InsertCliente) {
 	return db.insert(clienteTable).values(data);
 }
+async function selectClienteById(id: number) {
+	return db.select().from(clienteTable).where(eq(clienteTable.id, id));
+}
 
-function selectAllClientes() {
+async function selectAllClientes() {
 	return db.select().from(clienteTable);
 }
 
-export const clienteController = {
-    insertCliente,
-    selectAllClientes
+async function updateCliente(id: number, data: Partial<SelectCliente>) {
+	return db.update(clienteTable).set(data).where(eq(clienteTable.id, id));
 }
+
+async function deleteCliente(id: number) {
+	return db.delete(clienteTable).where(eq(clienteTable.id, id));
+}
+
+export const clienteController = {
+	insertCliente,
+	selectClienteById,
+	selectAllClientes,
+	updateCliente,
+	deleteCliente
+};
